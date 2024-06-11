@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352396C42C1881550029C398 /* SectionForTaskManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352396C32C1881550029C398 /* SectionForTaskManagerAdapter.swift */; };
+		352396C62C188B320029C398 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352396C52C188B320029C398 /* TaskRepository.swift */; };
 		C45B17032997B93F00ECF4E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B17022997B93F00ECF4E8 /* AppDelegate.swift */; };
 		C45B17052997B93F00ECF4E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45B17042997B93F00ECF4E8 /* SceneDelegate.swift */; };
 		C45B170C2997B94100ECF4E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C45B170B2997B94100ECF4E8 /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		352396C32C1881550029C398 /* SectionForTaskManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionForTaskManagerAdapter.swift; sourceTree = "<group>"; };
+		352396C52C188B320029C398 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		C45B16FF2997B93F00ECF4E8 /* TodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C45B17022997B93F00ECF4E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C45B17042997B93F00ECF4E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		352396C22C18813A0029C398 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				352396C32C1881550029C398 /* SectionForTaskManagerAdapter.swift */,
+				352396C52C188B320029C398 /* TaskRepository.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C45B16F62997B93F00ECF4E8 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +85,7 @@
 		C45B17012997B93F00ECF4E8 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				352396C22C18813A0029C398 /* Managers */,
 				C45B17022997B93F00ECF4E8 /* AppDelegate.swift */,
 				C45B17042997B93F00ECF4E8 /* SceneDelegate.swift */,
 				F55916402B03E88300583667 /* Sizes.swift */,
@@ -227,11 +241,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				352396C42C1881550029C398 /* SectionForTaskManagerAdapter.swift in Sources */,
 				F559163F2B03E64B00583667 /* UIViewController+Preview.swift in Sources */,
 				C45B17032997B93F00ECF4E8 /* AppDelegate.swift in Sources */,
 				C45B171B2997BFE400ECF4E8 /* MainViewController.swift in Sources */,
 				F5D856252B108785007A71F4 /* MainPresenter.swift in Sources */,
 				F5D856292B109604007A71F4 /* LoginPresenter.swift in Sources */,
+				352396C62C188B320029C398 /* TaskRepository.swift in Sources */,
 				F5D856272B109551007A71F4 /* LoginModel.swift in Sources */,
 				F5D856232B1085A2007A71F4 /* MainModel.swift in Sources */,
 				F55916412B03E88300583667 /* Sizes.swift in Sources */,

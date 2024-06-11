@@ -19,7 +19,7 @@ final class MainViewController: UITableViewController {
 	var presenter: IMainPresenter?
 
 	// MARK: - Private properties
-	private var viewData = MainModel.ViewData(tasks: [])
+	private var viewData = MainModel.ViewData(tasksBySections: [])
 
 	// MARK: - Initialization
 
@@ -44,11 +44,11 @@ final class MainViewController: UITableViewController {
 
 extension MainViewController {
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		2
+		viewData.tasksBySections.count
 	}
-	
+
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		viewData.tasks.count
+		viewData.tasksBySections[section].tasks.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,13 +57,9 @@ extension MainViewController {
 		configureCell(cell, with: task)
 		return cell
 	}
-	
+
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		if section == 0 {
-			return "Completed tasks"
-		} else {
-			return "Uncompleted tasks"
-		}
+		viewData.tasksBySections[section].title
 	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -82,7 +78,7 @@ private extension MainViewController {
 	}
 
 	func getTaskForIndex(_ indexPath: IndexPath) -> MainModel.ViewData.Task {
-		viewData.tasks[indexPath.row]
+		viewData.tasksBySections[indexPath.section].tasks[indexPath.row]
 	}
 
 	func configureCell(_ cell: UITableViewCell, with task: MainModel.ViewData.Task) {

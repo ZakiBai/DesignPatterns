@@ -22,30 +22,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		self.window = window
 	}
 
-	func assemblyTodoList() -> UIViewController {
-		let viewController = MainViewController()
-		let presenter = MainPresenter(view: viewController, taskManager: buildTaskManager())
+	func assemblyLogin() -> UIViewController {
+		let viewController = LoginViewController()
+		let todoListAssembler = TodoListAssembler(repository: TaskRepositoryStub())
+		let presenter = LoginPresenter(view: viewController, nextScreen: todoListAssembler.assemblyTodoList())
 		viewController.presenter = presenter
 		return viewController
 	}
+}
 
-	func assemblyLogin() -> UIViewController {
-		let viewController = LoginViewController()
-		let presenter = LoginPresenter(view: viewController, nextScreen: assemblyTodoList())
+final class TodoListAssembler {
+	private let repository: ITaskRepository
+
+	init(repository: ITaskRepository) {
+		self.repository = repository
+	}
+
+	func assemblyTodoList() -> UIViewController {
+		let viewController = MainViewController()
+		let sectionManager = SectionForTaskManagerAdapter(
+			taskManager: buildTaskManager(),
+			sections: [.uncompleted, .completed, .allTasks]
+		)
+		let presenter = MainPresenter(view: viewController, sectionManager: sectionManager)
 		viewController.presenter = presenter
 		return viewController
 	}
 
 	func buildTaskManager() -> ITaskManager {
 		let taskManager = OrderedTaskManager(taskManager: TaskManager())
-		let tasks = [
-			ImportantTask(title: "Do homework", taskPriority: .high),
-			RegularTask(title: "Do Workout", completed: true),
-			ImportantTask(title: "Write new tasks", taskPriority: .low, createDate: Date()),
-			RegularTask(title: "Solve 3 algorithms"),
-			ImportantTask(title: "Go shopping", taskPriority: .medium, createDate: Date())
-		]
-		taskManager.addTasks(tasks: tasks)
+		taskManager.addTasks(tasks: repository.getTasks())
 
 		return taskManager
 	}
